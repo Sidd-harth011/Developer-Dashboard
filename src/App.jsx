@@ -1,4 +1,4 @@
-
+import CardInvertedColors from "./pages/components/card";
 import { Children } from "react";
 import Mainpage from "./pages/Mainpage";
 import { Router, Route, RouterProvider } from "react-router";
@@ -35,9 +35,10 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={routes}>
+      {/* <RouterProvider router={routes}>
         <Mainpage />
-      </RouterProvider>
+      </RouterProvider> */}
+      <CardInvertedColors/>
     </>
   );
 }
