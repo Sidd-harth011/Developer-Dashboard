@@ -4,7 +4,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoMdPeople } from "react-icons/io";
 import { IoIosNotificationsOutline } from "react-icons/io";
-
+import pic from "../../assets/pic.webp"
 const SmallNav = () => {
   return (
     <>
@@ -17,6 +17,7 @@ const SmallNav = () => {
                 <div>
                 <IoMdPeople />
                 <IoIosNotificationsOutline />
+                <img src={pic} alt="" />
                 </div>
             </nav>
             <div>
