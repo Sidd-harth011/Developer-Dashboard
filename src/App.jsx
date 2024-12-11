@@ -2,6 +2,12 @@ import CardInvertedColors from "./pages/components/card";
 import { Children } from "react";
 import Mainpage from "./pages/Mainpage";
 import { Router, Route, RouterProvider } from "react-router";
+import SmallNav from "./pages/components/SmallNav";
+import Overview from "./pages/Overview"
+import Account from "./pages/Account";
+import Customer from "./pages/Customer";
+import Setting from "./pages/Setting";
+import Error from "./pages/Error";
 
 function App() {
   const routes = [
@@ -35,10 +41,13 @@ function App() {
 
   return (
     <>
-      {/* <RouterProvider router={routes}>
+
+      /* <RouterProvider router={routes}>
         <Mainpage />
-      </RouterProvider> */}
+      </RouterProvider> */
       <CardInvertedColors/>
+
+     <SmallNav/>
     </>
   );
 }
