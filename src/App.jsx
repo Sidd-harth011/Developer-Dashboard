@@ -3,6 +3,7 @@ import { Children } from "react";
 import Mainpage from "./pages/Mainpage";
 import { Router, Route, RouterProvider } from "react-router";
 import SmallNav from "./pages/components/SmallNav";
+import BigNav from "./pages/components/BigNav";
 import Overview from "./pages/Overview"
 import Account from "./pages/Account";
 import Customer from "./pages/Customer";
@@ -41,7 +42,7 @@ function App() {
 
   return (
     <>
-     <SmallNav/>
+     <CardInvertedColors/>
     </>
   );
 }

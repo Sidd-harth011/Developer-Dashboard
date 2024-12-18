@@ -1,8 +1,11 @@
 import React from 'react'
+import CardInvertedColors from './components/card'
 
 const Overview = () => {
   return (
-    <div>Overview</div>
+    <>
+    <CardInvertedColors/>
+    </>
   )
 }
 
