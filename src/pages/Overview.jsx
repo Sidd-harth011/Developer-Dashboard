@@ -13,9 +13,9 @@ const Overview = () => {
         <CardInvertedColors />
       </div>
       <div>
-        <div className="border-red-500 border p-3 grid grid-cols-3 grid-row-2 xl:grid-rows-1 gap-3">
+        <div className="p-3 grid grid-cols-4 grid-row-3 xl:grid-rows-1 gap-3">
           <div
-            className="flex flex-col gap-2 rounded-2xl shadow-sm col-span-3 xl:col-span-2"
+            className="flex flex-col gap-2 rounded-2xl shadow-sm col-span-4 xl:col-span-3"
             style={{ border: "2px solid #ebebeb" }}
           >
             <div className="pt-8 px-6 pb-4 flex justify-between">
@@ -57,7 +57,7 @@ const Overview = () => {
             </div>
           </div>
           <div
-            className="flex flex-col rounded-2xl shadow-sm col-span-2 xl:col-span-1"
+            className="flex flex-col rounded-2xl shadow-sm col-span-4 sm:col-span-2 xl:col-span-1"
             style={{ border: "2px solid #ebebeb" }}
           >
             <div className="pt-8 px-6 pb-4 flex justify-start">
@@ -75,11 +75,43 @@ const Overview = () => {
               <TrafficPieChart className="w-full h-full" />
             </div>
           </div>
-          <div>
+          <div className="col-span-4 sm:col-span-2 xl:col-span-1">
             <Products />
           </div>
-          <div>
+          <div className="flex flex-col rounded-2xl shadow-sm col-span-4 xl:col-span-3"
+            style={{ border: "2px solid #ebebeb" }}>
+            <div className="pt-8 px-6 pb-4 flex justify-start">
+            <span
+                style={{
+                  color: "#212636",
+                  fontSize: "18px",
+                  fontWeight: "500",
+                }}
+              >
+                Latest Orders
+              </span>
+            </div>
             <Orders/>
+            <div
+              className="flex w-full p-4 justify-end"
+              style={{ borderTop: "2px solid #ebebeb" }}
+            >
+              <button className="flex items-center gap-1 ">
+                <span
+                  style={{
+                    color: "#212636",
+                    fontSize: "15px",
+                    fontWeight: "500",
+                  }}
+                >
+                  View All
+                </span>
+                <FaArrowRightLong
+                  style={{ color: "#212636", fontSize: "18px" }}
+                />
+              </button>
+            </div>
+
           </div>
         </div>
       </div>

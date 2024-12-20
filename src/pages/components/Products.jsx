@@ -4,7 +4,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 
 export function Products() {
   return (
-    <Card className="p-3 flex flex-col gap-2 rounded-2xl shadow-sm col-span-2 xl:col-span-1"
+    <Card className="p-5 flex flex-col gap-2 rounded-2xl shadow-sm"
                 style={{ border: "2px solid #ebebeb" }}>
       <div className="mb-4 flex items-center justify-between">
         <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Latest Products</h5>
