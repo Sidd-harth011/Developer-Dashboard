@@ -49,7 +49,7 @@ const SmallNav = () => {
           style={{ width: "320px" }}
           animate={line ? { x: -320, opacity: 1 } : { x: 0, opacity: 1 }}
           initial={line ? { x: -0, opacity: 1 } : { x: -320, opacity: 1 }}
-          transition={{ duration: 2 }}
+          transition={{ duration: 1 }}
         >
           <div
             className="w-full p-5 flex flex-col gap-2"
