@@ -101,9 +101,9 @@ const SmallNav = () => {
                   <TbChartPie className="text-lg" /> Overview
                 </li>
               </Link>
-              <Link to="people">
+              <Link to="customer">
                 <li className="flex flex-row gap-2 items-center text-md font-semibold text-drop p-3 rounded-md cursor-pointer">
-                  <IoPeopleOutline className="text-lg" /> People
+                  <IoPeopleOutline className="text-lg" /> Customer
                 </li>
               </Link>
               <Link to="integration">
