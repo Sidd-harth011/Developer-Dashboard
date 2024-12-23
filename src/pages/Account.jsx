@@ -1,87 +1,71 @@
-import React, { useState } from 'react';
-
-function Account() {
-  const [profile, setProfile] = useState({
-    firstName: 'Sofia',
-    lastName: 'Rivers',
-    email: 'sofia@devias.io',
-    state: '',
-    city: '',
-  });
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setProfile({ ...profile, [name]: value });
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle form submission logic here
-    console.log(profile);
-  };
-
+import React from 'react'
+import { IoAddOutline } from "react-icons/io5";
+import { IoIosSearch } from "react-icons/io";
+const Account = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm">
-        <h2 className="text-2xl font-semibold mb-4">Account</h2>
+    <div>
+      <div className='py-16 px-6 w-full'>
+        <div className='flex justify-between gap-6 w-full flex-col'>
+          <div className='flex justify-between w-full'>
+            <h4 className='text-3xl ' style={{ color: "#212636", fontWeight: "500" }}>
+              Account
+            </h4>
 
-        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-          <div className="flex-1">
-            <img src={profile.picture || 'https://via.placeholder.com/150'} alt="Profile Picture" className="rounded-full w-24 h-24 mb-4" />
-            <div className="text-center">
-              <h3 className="text-lg font-semibold">{profile.firstName} {profile.lastName}</h3>
-              <p className="text-sm text-gray-500">{profile.location}</p>
-              <p className="text-sm text-gray-500">{profile.timezone}</p>
-              <button className="mt-2 text-sm text-blue-500 hover:underline">Upload picture</button>
+          </div>
+          <div className='grid grid-cols-2 gap-6'>
+            <div className=' col-span-2 lg:col-span-1'>
+            <div style={{ border: "1px solid #ebebeb" }} className='rounded-xl shadow-sm'>
+              <div className='p-4' style={{ borderBottom: '1px solid #ebebeb' }}>
+                <div className='w-full flex flex-col items-center justify-center gap-3'>
+                  <img src="https://material-kit-react.devias.io/assets/avatar.png" alt="" style={{ width: "80px", height: "80px", }} className='rounded-full' />
+                  <h5 style={{ fontSize: "24px", color: "#212636" }}>Developer</h5>
+                  <p className='text-md' style={{ color: "#667085" }}>Delhi India</p>
+                  <p className='text-md' style={{ color: "#667085" }}>GTM - 7 </p>
+                </div>
+              </div>
+              <div className='py-4 px-4'>
+                <button className='w-full' style={{ color: "#635bff", fontSize: "14px", fontWeight: "500" }}>Upload Picture</button>
+              </div>
+            </div>
+            </div>
+            <div
+              className="flex flex-col col-span-2 lg:col-span-1 rounded-xl shadow-sm"
+              style={{ border: "1px solid #f0f0f0" }}
+            >
+              <div
+                className="w-full pt-8 pb-4 px-6"
+                style={{ borderBottom: "1px solid #e6e8ed" }}
+              >
+                <h2 className="text-lg font-semibold" style={{ color: "#212636" }}>
+                  Profile
+                </h2>
+                <span
+                  className="text-sm"
+                  style={{ color: "#667085", fontWeight: "400" }}
+                >
+                  The information can be edited
+                </span>
+              </div>
+              <div className="w-full flex py-9 px-6">
+                <div className="w-full grid grid-cols-4 gap-6">
+                  <input type="text" placeholder="First name" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} />
+                  <input type="text" placeholder="Last name" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} />
+                  <input type="email" placeholder="Email addrress" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} />
+                  <input type="number" placeholder="Number" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} />
+                  <input type="text" placeholder="City" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} />
+                </div>
+              </div>
+              <div className="flex justify-end p-2 w-full" style={{ borderTop: "1px solid #e6e8ed" }}>
+                <button style={{ fontSize: "14px", fontWeight: "400", color: "white" }} className="py-2 px-5 bg-custompurple rounded">Save Details</button>
+              </div>
             </div>
           </div>
 
-          <div className="flex-1">
-            <h3 className="text-lg font-semibold mb-4">Profile</h3>
-            <form onSubmit={handleSubmit}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First name *</label>
-                  <input type="text" id="firstName" name="firstName" value={profile.firstName} onChange={handleChange} className="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500" />
-                </div>
-                <div>
-                  <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last name *</label>
-                  <input type="text" id="lastName" name="lastName" value={profile.lastName} onChange={handleChange} className="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500" />
-                </div>
-              </div>
 
-              <div className="mt-4">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email address *</label>
-                <input type="email" id="email" name="email" value={profile.email} onChange={handleChange} className="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500" />
-              </div>
-
-              <div className="mt-4">
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone number</label>
-                <input type="tel" id="phone" name="phone" value={profile.phone} onChange={handleChange} className="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500" />
-              </div>
-
-              <div className="mt-4">
-                <label htmlFor="state" className="block text-sm font-medium text-gray-700">State</label>
-                <select id="state" name="state" value={profile.state} onChange={handleChange} className="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500">
-                  <option value="">Select state</option>
-                  {/* Add state options here */}
-                </select>
-              </div>
-
-              <div className="mt-4">
-                <label htmlFor="city" className="block text-sm font-medium text-gray-700">City</label>
-                <input type="text" id="city" name="city" value={profile.city} onChange={handleChange} className="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500" />
-              </div>
-
-              <div className="mt-6">
-                <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save details</button>
-              </div>
-            </form>
-          </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Account;
+export default Account
