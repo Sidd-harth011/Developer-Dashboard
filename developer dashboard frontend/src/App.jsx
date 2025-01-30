@@ -10,6 +10,7 @@ import Customer from "./pages/Customer";
 import Setting from "./pages/Setting";
 import Error from "./pages/Error";
 import Integration from "./pages/Integration";
+import Form from "./pages/Form"
 
 function App() {
   const routes = createBrowserRouter(
@@ -49,6 +50,7 @@ function App() {
 
   return (
     <>
+      
      <RouterProvider router={routes}/>
     </>
   );
