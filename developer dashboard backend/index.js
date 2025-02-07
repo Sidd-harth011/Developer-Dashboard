@@ -9,13 +9,18 @@ Connect_Mongo()
 
 
 const app = express();
-// connetion frontend
-app.use(express.static(path.join(__dirname,"../developer-dashboard-frontend/data")))
 
-app.get('*',(res,req)=>{
-    res.res.sendFile(path.join(__dirname,"../developer-dashboard-frontend/data",'index.html'))
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+// connetion frontend
+app.use(express.static(path.join(__dirname,"../developer-dashboard-frontend/data/dist")))
+
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname,"../developer-dashboard-frontend/data/dist",'index.html'))
 })
 // end connecting frontend
-app.listen(5000,()=>{
+
+app.use('/',require('./router/home'))
+
+app.listen(5050,()=>{
     console.log('the server is running');
 })
