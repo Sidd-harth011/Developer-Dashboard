@@ -11,7 +11,7 @@ import Setting from "./pages/Setting";
 import Error from "./pages/Error";
 import Integration from "./pages/Integration";
 import Form from "./pages/Form"
-
+import { store } from "./pages/redux/reducer";
 function App() {
   const routes = createBrowserRouter(
     [
