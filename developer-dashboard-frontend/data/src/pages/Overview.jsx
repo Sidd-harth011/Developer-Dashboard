@@ -6,10 +6,12 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import TrafficPieChart from "./components/PieChart";
 import { Products } from "./components/Products";
 import Orders from "./components/Orders";
+import Login from "./login _signup/login";
+import Sign from "./login _signup/Sign";
 const Overview = () => {
   return (
     <>
-      <div className="w-full flex justify-center items-center">
+      {/* <div className="w-full flex justify-center items-center">
         <CardInvertedColors />
       </div>
       <div>
@@ -114,7 +116,8 @@ const Overview = () => {
 
           </div>
         </div>
-      </div>
+      </div> */}
+      <Login/>
     </>
   );
 };

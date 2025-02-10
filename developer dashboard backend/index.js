@@ -19,7 +19,7 @@ app.get('*',(req,res)=>{
 })
 // end connecting frontend
 
-app.use('/',require('./router/home'))
+
 
 app.listen(5050,()=>{
     console.log('the server is running');

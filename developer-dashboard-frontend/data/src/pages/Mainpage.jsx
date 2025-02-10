@@ -6,7 +6,7 @@ const Mainpage = () => {
   return (
     <>
       <div>
-        <SmallNav/>
+        {/* <SmallNav/> */}
         <Outlet/>
       </div>
     </>
