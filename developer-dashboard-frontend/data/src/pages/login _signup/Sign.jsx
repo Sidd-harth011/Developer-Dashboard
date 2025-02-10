@@ -1,11 +1,12 @@
 import React from 'react'
-
+import { Link } from 'react-router'
 const Sign = () => {
+  
   return (
     <>
-    <div className="w-screen h-screen flex ">
+    <div className="w-screen h-screen flex">
             
-            <div className="flex flex-col items-center sm:justify-center w-full sm:w-2/6 h-6/6 sm:py-4 gap-4">
+            <div className="flex flex-col self-center items-center sm:justify-center w-full sm:w-2/6 h-6/6 sm:py-4 gap-4">
               <div className="flex gap-2 justify-center items-center self-end sm:self-center px-2 py-2">
                 <span className="text-sm text-gray-500">
                   Have an account ?
@@ -14,7 +15,7 @@ const Sign = () => {
                   className="text-xs font-semibold p-1 px-2 rounded"
                   style={{ backgroundColor: "#e5e7eb" }}
                 >
-                  Log In
+                 <Link to="/log-in"> Log In</Link>
                 </button>
               </div>
               <div className="flex flex-col justify-center items-center w-full h-auto gap-4" >

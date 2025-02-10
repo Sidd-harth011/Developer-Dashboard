@@ -1,12 +1,27 @@
 import React from "react";
 import pic from "../../assets/log-pic.jpg";
+import { Link } from "react-router";
 const Login = () => {
   return (
     <>
-      <div className="w-screen h-full px-4 flex">
-        <img src={pic} alt="" className="h-full w-4/6" />
-        <div className="flex flex-col items-center justify-center w-2/6 h-6/6 py-4">
-          <div className="flex gap-2 justify-center items-center self-end">
+      <div className="w-screen sm:pe-4 flex h-screen">
+        <div className="hidden sm:flex rounded relative h-5/5 w-4/6">
+          <video
+            className="rounded absolute top-0 left-0 w-full h-full object-cover"
+            muted 
+            loop
+            autoPlay
+            style={{ zIndex: -100 }}
+          >
+            <source
+              src="https://videos.pexels.com/video-files/8632591/8632591-uhd_2560_1440_25fps.mp4"
+              type="video/mp4"
+              className="bg-scroll"
+            />
+          </video>
+        </div>
+        <div className="flex flex-col items-center justify-center w-6/6 sm:w-2/6 h-6/6 sm:px-4 py-4 gap-2">
+          <div className="flex gap-2 justify-center items-center self-center">
             <span className="text-sm text-gray-500">
               Don't have an account ?
             </span>
@@ -14,12 +29,12 @@ const Login = () => {
               className="text-xs font-semibold p-1 px-2 rounded"
               style={{ backgroundColor: "#e5e7eb" }}
             >
-              Sign Up
+             <Link to="/sign-up"> Sign Up</Link>
             </button>
           </div>
-          <div className="flex flex-col justify-center items-center w-full h-full" >
+          <div className="flex flex-col justify-start items-center w-full h-auto gap-4">
             <div className="flex justify-center flex-col items-center px-4 gap-4">
-              <h1 className="text-2xl font-semibold">
+              <h1 className="text-2xl font-semibold text-center">
                 Sign in to{" "}
                 <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
                   Developer Dasboard

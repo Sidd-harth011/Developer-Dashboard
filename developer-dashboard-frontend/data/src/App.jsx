@@ -12,6 +12,8 @@ import Error from "./pages/Error";
 import Integration from "./pages/Integration";
 import Form from "./pages/Form"
 import { store } from "./pages/redux/reducer";
+import Sign from "./pages/login _signup/Sign";
+import Login from "./pages/login _signup/login";
 function App() {
   const routes = createBrowserRouter(
     [
@@ -38,6 +40,14 @@ function App() {
           {
             path: "/setting",
             element: <Setting />,
+          },
+          {
+            path: "/sign-up",
+            element: <Sign />,
+          },
+          {
+            path:"/log-in",
+            element:<Login/>
           },
           {
             path: "*",
