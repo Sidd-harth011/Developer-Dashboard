@@ -1,14 +1,87 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import pic from "../../assets/log-pic.jpg";
 import { Link } from "react-router";
+import axios from "axios";
+import { Button, notification, Space } from "antd";
+import { useNavigate } from "react-router";
 const Login = () => {
+  const navigate =useNavigate()
+  const [state, setState] = useState(true);
+
+  const [form, SetForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const fill = (e) => {
+    switch (e.target.name) {
+      case "email":
+        {
+          SetForm({ ...form, email: e.target.value });
+        }
+        break;
+      case "password":
+        {
+          SetForm({ ...form, password: e.target.value });
+        }
+        break;
+    }
+  };
+
+  const [api, contextHolder] = notification.useNotification();
+  const openNotificationWithIcon = (type) => {
+    api[type]({
+      message: "Account Error",
+      description: "There is no account with this email.",
+    });
+  };
+
+  const openNotificationWithIcon2 = (type) => {
+    api[type]({
+      message: "Password Error",
+      description: "The Password is incorect.",
+    });
+  };
+
+  const submit = (e) => {
+    e.preventDefault();
+    setState(!state);
+  };
+
+  useEffect(() => {
+    const dataSend = async () => {
+      console.log("run");
+      try {
+        const f = form;
+        const response = await axios.post("http://localhost:5050/", f);
+        console.log(response.data.message);
+        switch (response.data.message) {
+          case "Incorect password":
+            {
+              openNotificationWithIcon2("error");
+            }
+            break;
+          case "NO id": {
+            openNotificationWithIcon("error");
+            
+          }break;
+          case "login":{
+            navigate(response.data.redirect)
+          }
+        }
+      } catch (error) {}
+    };
+    dataSend();
+  }, [state]);
+
   return (
     <>
       <div className="w-screen sm:pe-4 flex h-screen">
+        {contextHolder}
         <div className="hidden sm:flex rounded relative h-5/5 w-4/6">
           <video
             className="rounded absolute top-0 left-0 w-full h-full object-cover"
-            muted 
+            muted
             loop
             autoPlay
             style={{ zIndex: -100 }}
@@ -29,7 +102,7 @@ const Login = () => {
               className="text-xs font-semibold p-1 px-2 rounded"
               style={{ backgroundColor: "#e5e7eb" }}
             >
-             <Link to="/sign-up"> Sign Up</Link>
+              <Link to="/sign-up"> Sign Up</Link>
             </button>
           </div>
           <div className="flex flex-col justify-start items-center w-full h-auto gap-4">
@@ -55,17 +128,22 @@ const Login = () => {
                   name="email"
                   placeholder="Email Address"
                   className="border border-gray-200 text-sm px-2 py-1 w-full font-medium rounded"
+                  onChange={fill}
                 />
                 <input
                   type="password"
                   name="password"
                   placeholder="Password"
                   className="border border-gray-200 text-sm px-2 py-1 w-full font-medium rounded"
+                  onChange={fill}
                 />
                 <span className="text-sm text-blue-800 font-semibold text-center">
                   Forgot the password ?
                 </span>
-                <button className="bg-blue-800 text-sm font-semibold text-white text-center py-1 rounded">
+                <button
+                  className="bg-blue-800 text-sm font-semibold text-white text-center py-1 rounded"
+                  onClick={submit}
+                >
                   Login
                 </button>
                 <div className="flex justify-center items-center gap-2 px-1">

@@ -2,7 +2,10 @@ const express = require('express')
 const User  = require('../Mongo/schemas/user')
 const router = express.Router()
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const secretKey = process.env.SECRET_KEY
 
+// for sign-up page registrayion
 router.post('/sign-up',async(req,res)=>{
     try {
         console.log('hi')
@@ -27,10 +30,41 @@ router.post('/sign-up',async(req,res)=>{
         }
         
     } catch (error) {
-        
+        console.log(error)
     }
     
 
 })
+//for sign-up page registrayion end
 
+// for log-in page 
+router.post('/',async(req,res)=>{
+    console.log('run1')
+    try {
+        const {email,password} = req.body;
+        console.log(req.body)
+        if(!email==""){
+            const check = await User.findOne({Email:email});
+        if(check){
+            const pass = await bcrypt.compare(password,check.Password)
+            console.log('run12')
+            if(pass){
+                const token = jwt.sign({userId:check._id},secretKey)
+                res.cookie('token',token,{httpOnly:true})
+                console.log('run123')
+                res.status(201).json({"message":"login","redirect":"/overview"})
+            }else{
+                res.status(201).json({"message":"Incorect password"})
+                console.log('run1234')
+            }
+        }else{
+            res.status(201).json({"message":"NO id"})
+            console.log('run12345')
+        }
+        }
+        
+    } catch (error) {
+        
+    }
+})
 module.exports = router
