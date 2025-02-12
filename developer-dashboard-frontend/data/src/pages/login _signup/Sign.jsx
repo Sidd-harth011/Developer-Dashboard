@@ -1,12 +1,97 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router'
+import axios from 'axios'
+import { useRef } from 'react';
+import { Button, notification, Space } from 'antd';
 const Sign = () => {
   
+  const [form, Setform] = useState({
+    name:"",
+    email:"",
+    number:"",
+    city:"",
+    password:"",
+  })
+  
+  const [state,Setstate]= useState(true)
+  const dataSubmit = (e)=>{
+      switch(e.target.name){
+        case "name" :{
+          Setform({...form,name:e.target.value})
+        }break;
+        case "email" :{
+          Setform({...form,email:e.target.value})
+        }break;
+        case "number" :{
+          Setform({...form,number:e.target.value})
+        }break;
+        case "City" :{
+          Setform({...form,city:e.target.value})
+        }break;
+        case "password" :{
+          Setform({...form,password:e.target.value})
+        }break;
+     
+    }
+  }
+  
+  console.log(form.name)
+
+  const register = (e)=>{
+    e.preventDefault()
+    Setstate(!state)
+  }
+  
+
+  const [api, contextHolder] = notification.useNotification();
+  const openNotificationWithIcon = (type) => {
+    api[type]({
+      message: 'Registerd Successfull',
+      description:
+        'You have created your account.',
+    });
+  };
+
+
+   useEffect(()=>{
+    const req =  async ()=>{
+      console.log("hi ")
+      try {
+        const f = form;
+        const response = await axios.post("http://localhost:5050/sign-up",f)
+        console.log(response.data.message)
+        openNotificationWithIcon('success')
+      } catch (error) {
+        console.log("f"+error)
+    }
+    }
+    req()
+    return () => {
+      console.log("Cleanup function executed");
+  };
+ },[state])
+
+    // useEffect(()=>{
+    //   async()=>{
+    //     try {
+    //       const response = await fetch("http://localhost:5050/sign-up", {
+    //         method: "POST",
+    //         headers: { "Content-Type": "application/json" },
+    //         body: JSON.stringify(form),
+    //       });
+    //       const data = await response.json();
+    //     console.log(data.message);
+    //          } catch (error) {
+    //            console.log("f"+error)
+    //          }
+    //   }
+    // },[state])
+
   return (
     <>
     <div className="w-screen h-screen flex">
-            
-            <div className="flex flex-col self-center items-center sm:justify-center w-full sm:w-2/6 h-6/6 sm:py-4 gap-4">
+    {contextHolder}
+                <div className="flex flex-col self-center items-center sm:justify-center w-full sm:w-2/6 h-6/6 sm:py-4 gap-4">
               <div className="flex gap-2 justify-center items-center self-end sm:self-center px-2 py-2">
                 <span className="text-sm text-gray-500">
                   Have an account ?
@@ -15,7 +100,7 @@ const Sign = () => {
                   className="text-xs font-semibold p-1 px-2 rounded"
                   style={{ backgroundColor: "#e5e7eb" }}
                 >
-                 <Link to="/log-in"> Log In</Link>
+                 <Link to="/"> Log In</Link>
                 </button>
               </div>
               <div className="flex flex-col justify-center items-center w-full h-auto gap-4" >
@@ -34,24 +119,51 @@ const Sign = () => {
                   </p>
                 </div>
                 <div className="w-full flex flex-col justify-center items-center gap-4">
-                  <form action="" className="w-4/5 flex flex-col gap-3">
+                  <form action="" className="w-4/5 flex flex-col gap-3" onSubmit={register}>
+                  <input
+                      type="text"
+                      name="name"
+                      placeholder="Name"
+                      className="border border-gray-200 text-sm px-2 py-1 w-full font-medium rounded"
+                      value={form.name}
+                      onChange={dataSubmit}
+                      autoComplete='username'
+                    />
                     <input
                       type="email"
                       name="email"
                       placeholder="Email Address"
                       className="border border-gray-200 text-sm px-2 py-1 w-full font-medium rounded"
+                      value={form.email}
+                      onChange={dataSubmit}
+                      autoComplete='email'
                     />
                     <input
                       type="password"
                       name="password"
                       placeholder="Password"
                       className="border border-gray-200 text-sm px-2 py-1 w-full font-medium rounded"
+                      value={form.password}
+                      onChange={dataSubmit}
+                      autoComplete='current-password'
                     />
                     <input
                       type="number"
                       name="number"
                       placeholder="Number"
                       className="border border-gray-200 text-sm px-2 py-1 w-full font-medium rounded"
+                      value={form.number}
+                      onChange={dataSubmit}
+                      autoComplete='number'
+                    />
+                    <input
+                      type="text"
+                      name="City"
+                      placeholder="City"
+                      className="border border-gray-200 text-sm px-2 py-1 w-full font-medium rounded"
+                      value={form.city}
+                      onChange={dataSubmit}
+                      autoComplete='city'
                     />
                     <button className="bg-blue-800 text-sm font-semibold text-white text-center py-1 rounded">
                       Register

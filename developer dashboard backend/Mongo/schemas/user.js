@@ -4,18 +4,19 @@ const user = new mongoose.Schema({
         type:String,
         reqiured:true
     },
-    Last:{
-        type:String,
-    },
     Email:{
         type:String,
         reqiured:true
     },
     Number:{
-        type:Number,
+        type:String,
         required:true
     },
     City:{
+        type:String,
+        required:true
+    },
+    Password:{
         type:String,
         required:true
     },

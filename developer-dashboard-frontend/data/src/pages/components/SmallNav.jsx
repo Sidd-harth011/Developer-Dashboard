@@ -96,7 +96,7 @@ const SmallNav = () => {
           </div>
           <div>
             <ul className="p-4 flex flex-col gap-1">
-              <Link to="/">
+              <Link to="/overview">
                 <li className="flex flex-row gap-2 items-center text-md font-semibold text-drop p-3 rounded-md cursor-pointer hover:bg-custompurple hover:text-white duration-500 active:bg-custompurple">
                   <TbChartPie className="text-lg" /> Overview
                 </li>

@@ -11,7 +11,7 @@ import Sign from "./login _signup/Sign";
 const Overview = () => {
   return (
     <>
-      {/* <div className="w-full flex justify-center items-center">
+       <div className="w-full flex justify-center items-center">
         <CardInvertedColors />
       </div>
       <div>
@@ -116,8 +116,7 @@ const Overview = () => {
 
           </div>
         </div>
-      </div> */}
-      <Sign/>
+      </div> 
     </>
   );
 };

@@ -14,6 +14,7 @@ import Form from "./pages/Form"
 import { store } from "./pages/redux/reducer";
 import Sign from "./pages/login _signup/Sign";
 import Login from "./pages/login _signup/login";
+import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 function App() {
   const routes = createBrowserRouter(
     [
@@ -22,7 +23,7 @@ function App() {
         element: <Mainpage />,
         children: [
           {
-            path: "/",
+            path: "/overview",
             element: <Overview />,
           },
           {
@@ -46,8 +47,8 @@ function App() {
             element: <Sign />,
           },
           {
-            path:"/log-in",
-            element:<Login/>
+            path:"/",
+            element:<Login />
           },
           {
             path: "*",
@@ -60,8 +61,10 @@ function App() {
 
   return (
     <>
-      
-     <RouterProvider router={routes}/>
+      <PrimeReactProvider>
+      <RouterProvider router={routes}/>
+      </PrimeReactProvider>
+     
     </>
   );
 }
