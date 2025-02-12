@@ -11,10 +11,17 @@ router.post('/sign-up',async(req,res)=>{
         const {name,email,number,city,password} = Data;
         const hashPass = await bcrypt.hash(password,10)
         try {
-            
-            await User.create({Name:name,Email:email,Number:number,City:city,Password:hashPass})
-            res.status(201).json({"message":"User is Registered"})
-            console.log('running d')
+            const find = await User.findOne({Email:email})
+            console.log(find)
+            if(find){
+                res.status(201).json({"message":"email is registerd"})
+                console.log('running d')
+            }
+            else{
+                await User.create({Name:name,Email:email,Number:number,City:city,Password:hashPass})
+                res.status(201).json({"message":"User is Registered"})
+                console.log('running d')
+            }
         } catch (error) {
             console.log(error)
         }

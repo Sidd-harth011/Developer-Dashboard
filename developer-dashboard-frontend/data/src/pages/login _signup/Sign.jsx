@@ -52,6 +52,14 @@ const Sign = () => {
     });
   };
 
+  const openNotificationWithIcon2 = (type) => {
+    api[type]({
+      message: 'Registerd not Successfull',
+      description:
+        'The email is already registerd',
+    });
+  };
+
 
    useEffect(()=>{
     const req =  async ()=>{
@@ -60,7 +68,26 @@ const Sign = () => {
         const f = form;
         const response = await axios.post("http://localhost:5050/sign-up",f)
         console.log(response.data.message)
-        openNotificationWithIcon('success')
+        if(response.data.message == "User is Registered"){
+          openNotificationWithIcon('success')
+          Setform({
+            name:"",
+    email:"",
+    number:"",
+    city:"",
+    password:"",
+          })
+        }else{
+          openNotificationWithIcon2('error')
+          Setform({
+            name:"",
+    email:"",
+    number:"",
+    city:"",
+    password:"",
+          })
+        }
+        
       } catch (error) {
         console.log("f"+error)
     }
