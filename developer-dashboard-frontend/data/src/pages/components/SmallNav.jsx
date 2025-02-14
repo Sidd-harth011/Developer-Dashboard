@@ -13,6 +13,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { IoPersonOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { IoClose } from "react-icons/io5";
+import { LiaSignOutAltSolid } from "react-icons/lia";
 const SmallNav = () => {
   const [line, SetLine] = useState(true);
   const showMenu = () => {
@@ -27,14 +28,21 @@ const SmallNav = () => {
         >
           <div className="flex flex-row gap-5 h-full items-center justify-center">
             <RxHamburgerMenu
-              className="text-2xl text-icon hover:text-custompurple hover:duration-300 "
+              className="text-2xl text-icon hover:text-custompurple hover:duration-300"
               onClick={showMenu}
             />
-            <IoSearchOutline className="text-2xl text-icon hover:text-custompurple hover:duration-300" />
+            <form action="" className="items-center hidden sm:flex">
+              <input type="text" placeholder="search" className="outline-none border border-e-0 p-1 rounded w-56"/>
+              <button className="bg-black rounded p-1 rounded-s-none " style={{border:"1px solid black"}}>
+              <IoSearchOutline className="text-2xl text-icon hover:text-custompurple hover:duration-300" />
+                </button>
+            </form>
+            {/* <IoSearchOutline className="text-2xl text-icon hover:text-custompurple hover:duration-300" /> */}
           </div>
           <div className="flex flex-row gap-5 h-full items-center">
             <IoMdPeople className="text-2xl text-icon hover:text-custompurple hover:duration-300 " />
             <IoIosNotificationsOutline className="text-2xl text-icon hover:text-custompurple hover:duration-300 " />
+            <LiaSignOutAltSolid className="text-2xl rounded-full text-white hover:text-white hover:duration-300 bg-red-600 p-1"/>
             <img src={pic} alt="" className="w-10 h-10 rounded-3xl" />
           </div>
         </nav>
@@ -68,7 +76,7 @@ const SmallNav = () => {
                 <IoClose className="text-2xl text-icon hover:text-custompurple hover:duration-300 " />
               </motion.button>
             </div>
-            <div className="flex gap-2 flex-col p-3 border rounded-lg">
+            {/* <div className="flex gap-2 flex-col p-3 border rounded-lg">
               <label htmlFor="drop" className="font-sans text-sm text-drop">
                 Choose Your Work-Place
               </label>
@@ -92,7 +100,13 @@ const SmallNav = () => {
                   Freelancing
                 </option>
               </select>
-            </div>
+            </div> */}
+            <form action="" className="items-center flex sm:hidden">
+              <input type="text" placeholder="search" className="outline-none border border-e-0 p-1 rounded w-56"/>
+              <button className="bg-black rounded p-1 rounded-s-none " style={{border:"2px solid black"}}>
+              <IoSearchOutline className="text-2xl text-white hover:text-custompurple hover:duration-300" />
+                </button>
+            </form>
           </div>
           <div>
             <ul className="p-4 flex flex-col gap-1">
@@ -102,22 +116,22 @@ const SmallNav = () => {
                 </li>
               </Link>
               <Link to="customer">
-                <li className="flex flex-row gap-2 items-center text-md font-semibold text-drop p-3 rounded-md cursor-pointer">
+                <li className="flex flex-row gap-2 items-center text-md font-semibold text-drop p-3 rounded-md cursor-pointer hover:bg-custompurple hover:text-white duration-500 active:bg-custompurple">
                   <IoPeopleOutline className="text-lg" /> Customer
                 </li>
               </Link>
               <Link to="integration">
-                <li className="flex flex-row gap-2 items-center text-md font-semibold text-drop p-3 rounded-md cursor-pointer">
+                <li className="flex flex-row gap-2 items-center text-md font-semibold text-drop p-3 rounded-md cursor-pointer hover:bg-custompurple hover:text-white duration-500 active:bg-custompurple">
                   <AiFillApi className="text-lg" /> Integration
                 </li>
               </Link>
               <Link to="setting">
-                <li className="flex flex-row gap-2 items-center text-md font-semibold text-drop p-3 rounded-md cursor-pointer">
+                <li className="flex flex-row gap-2 items-center text-md font-semibold text-drop p-3 rounded-md cursor-pointer hover:bg-custompurple hover:text-white duration-500 active:bg-custompurple">
                   <IoSettingsOutline className="text-lg" /> Setting
                 </li>
               </Link>
               <Link to="account">
-                <li className="flex flex-row gap-2 items-center text-md font-semibold text-drop p-3 rounded-md cursor-pointer">
+                <li className="flex flex-row gap-2 items-center text-md font-semibold text-drop p-3 rounded-md cursor-pointer hover:bg-custompurple hover:text-white duration-500 active:bg-custompurple">
                   <IoPersonOutline className="text-lg" /> Account
                 </li>
               </Link>

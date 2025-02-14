@@ -4,6 +4,8 @@ import { Link } from "react-router";
 import axios from "axios";
 import { Button, notification, Space } from "antd";
 import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { show,hide } from "../redux/MenuSlice";
 const Login = () => {
   const navigate =useNavigate()
   const [state, setState] = useState(true);
@@ -48,6 +50,8 @@ const Login = () => {
     setState(!state);
   };
 
+  const dispatch = useDispatch()
+
   useEffect(() => {
     const dataSend = async () => {
       console.log("run");
@@ -66,6 +70,7 @@ const Login = () => {
             
           }break;
           case "login":{
+            dispatch(show())
             navigate(response.data.redirect)
           }
         }

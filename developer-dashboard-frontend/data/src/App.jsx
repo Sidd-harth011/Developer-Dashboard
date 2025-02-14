@@ -11,10 +11,10 @@ import Setting from "./pages/Setting";
 import Error from "./pages/Error";
 import Integration from "./pages/Integration";
 import Form from "./pages/Form"
-import { store } from "./pages/redux/reducer";
 import Sign from "./pages/login _signup/Sign";
 import Login from "./pages/login _signup/login";
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
+import {Provider} from 'react-redux'
 function App() {
   const routes = createBrowserRouter(
     [
@@ -61,10 +61,9 @@ function App() {
 
   return (
     <>
-      <PrimeReactProvider>
-      <RouterProvider router={routes}/>
-      </PrimeReactProvider>
-     
+      
+      <RouterProvider router={routes}/>     
+          
     </>
   );
 }
