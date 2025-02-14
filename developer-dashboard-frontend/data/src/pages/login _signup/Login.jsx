@@ -78,7 +78,7 @@ const Login = () => {
     };
     dataSend();
   }, [state]);
-
+dispatch(hide())
   return (
     <>
       <div className="w-screen sm:pe-4 flex h-screen">

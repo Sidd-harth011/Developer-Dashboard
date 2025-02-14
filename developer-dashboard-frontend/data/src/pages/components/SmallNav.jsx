@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, Outlet } from "react-router";
+import React, { useEffect, useState } from "react";
+import { Link, Outlet, useNavigate } from "react-router";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoMdPeople } from "react-icons/io";
@@ -13,12 +13,35 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { IoPersonOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { IoClose } from "react-icons/io5";
+import axios from "axios";
 import { LiaSignOutAltSolid } from "react-icons/lia";
 const SmallNav = () => {
   const [line, SetLine] = useState(true);
   const showMenu = () => {
     return SetLine(!line);
   };
+
+const nav = useNavigate()
+const [v, setv] =useState(0)
+const [logout, Setlogout] = useState(true)
+const va = ()=>{
+  setv(1)
+}
+const out = ()=>{
+  Setlogout(!logout)
+}
+
+  useEffect(()=>{
+    const logout = async()=>{
+      console.log('logout')
+      const response = await axios.post('http://localhost:5050/logout',{value:v})
+      console.log(response.data.message)
+      if(response.data.message == "logout"){
+        nav('/')
+      }
+    }
+    setTimeout(logout(),3000)
+  },[logout])
   return (
     <>
       <div className="flex w-full sticky top-0">
@@ -42,7 +65,10 @@ const SmallNav = () => {
           <div className="flex flex-row gap-5 h-full items-center">
             <IoMdPeople className="text-2xl text-icon hover:text-custompurple hover:duration-300 " />
             <IoIosNotificationsOutline className="text-2xl text-icon hover:text-custompurple hover:duration-300 " />
-            <LiaSignOutAltSolid className="text-2xl rounded-full text-white hover:text-white hover:duration-300 bg-red-600 p-1"/>
+            <LiaSignOutAltSolid className="text-3xl rounded-full text-white hover:text-red-600 hover:duration-300 bg-red-600 p-1 hover:bg-white hover:border border-red-600" onClick={()=>{
+              va()
+              out()
+            }}/>
             <img src={pic} alt="" className="w-10 h-10 rounded-3xl" />
           </div>
         </nav>

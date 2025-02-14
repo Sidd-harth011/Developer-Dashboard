@@ -8,7 +8,7 @@ const Mainpage = () => {
   return (
     <>
       <div>
-        {true ? <SmallNav/> : ""} 
+        {value ? <SmallNav/> : ""} 
         <Outlet/>
       </div>
     </>
