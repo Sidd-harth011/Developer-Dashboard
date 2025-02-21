@@ -27,6 +27,7 @@ router.post("/sign-up", async (req, res) => {
           Number: number,
           City: city,
           Password: hashPass,
+          Image:"a"
         });
         res.status(201).json({ message: "User is Registered" });
         console.log("running d");

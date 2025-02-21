@@ -1,7 +1,85 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import { IoAddOutline } from "react-icons/io5";
 import { IoIosSearch } from "react-icons/io";
+import axios from 'axios';
+import {useDispatch, useSelector} from "react-redux"
+import { add } from './redux/UserSlice';
 const Account = () => {
+const [state,setState] = useState(true)
+const [obj, Setobj] = useState({
+  Name:"Demo",
+  City:"Demo",
+  Email:"Demo",
+  Number:123,
+})
+const dispatch = useDispatch()
+  useEffect(()=>{
+    const sendReq = async()=>{
+      
+      try{
+        console.log('running account')
+        const response= await axios.get('http://localhost:5050/account');
+        const data = response.data.message
+        console.log(data)
+        Setobj({Name:data.Name,City:data.City,Email:data.Email,Number:data.Number})
+        dispatch(add({name:data.Name,city:data.City,email:data.Email,number:data.Number,image:data.Image}))
+      }catch(error){
+        console.log(error)
+      }
+    }
+    sendReq()
+  },[state])
+
+  const dataUpdate= (e)=>{
+    switch(e.target.name){
+      case "name":{
+        Setobj({...obj,Name:e.target.value})
+      }break;
+      case "email":{
+        Setobj({...obj,Email:e.target.value})
+      }break;
+      case "number":{
+        Setobj({...obj,Number:e.target.value})
+      }break;
+      case "city":{
+        Setobj({...obj,City:e.target.value})
+      }break;
+    }
+  }
+
+  const [preview, Setpreview] = useState()
+  const [pic,SetPic] = useState()
+  const handlefilechange = (e)=>{
+    const img = e.target.files[0]
+    SetPic(img)
+    Setpreview(URL.createObjectURL(img))
+  }
+
+  const upload = ()=>{
+    const pictureSend = async()=>{
+      const Data = new FormData()
+      Data.append('image',pic)
+      Data.append('name',obj.Name)
+      Data.append('number',obj.Number)
+      Data.append('email',obj.Email)
+      Data.append('city',obj.City)
+      try{
+        console.log('upload run')
+        const response = await axios.post('http://localhost:5050/account',Data,{
+          headers:{"Content-Type":"multipart/form-data"},
+        })
+        console.log(response.data)
+
+      }catch(error){
+        console.log(error)
+      }
+    }
+    pictureSend()
+    setState(!state)
+  }
+  const RedU = useSelector((state)=> state.UserSlice.user)
+  console.log("hi manvi" + RedU)
+  
   return (
     <div>
       <div className='py-16 px-6 w-full'>
@@ -17,14 +95,15 @@ const Account = () => {
             <div style={{ border: "1px solid #ebebeb" }} className='rounded-xl shadow-sm'>
               <div className='p-4' style={{ borderBottom: '1px solid #ebebeb' }}>
                 <div className='w-full flex flex-col items-center justify-center gap-3'>
-                  <img src="https://material-kit-react.devias.io/assets/avatar.png" alt="" style={{ width: "80px", height: "80px", }} className='rounded-full' />
+                  <img src={RedU.image} alt="" style={{ width: "80px", height: "80px", }} className='rounded-full' />
                   <h5 style={{ fontSize: "24px", color: "#212636" }}>Developer</h5>
-                  <p className='text-md' style={{ color: "#667085" }}>Delhi India</p>
+                  <p className='text-md' style={{ color: "#667085" }}>{obj.City}</p>
                   <p className='text-md' style={{ color: "#667085" }}>GTM - 7 </p>
                 </div>
               </div>
               <div className='py-4 px-4'>
-                <button className='w-full' style={{ color: "#635bff", fontSize: "14px", fontWeight: "500" }}>Upload Picture</button>
+                <button className='w-full hover:cursor-pointer' style={{ color: "#635bff", fontSize: "14px", fontWeight: "500" }}>
+                  <input type="file" accept='image/*' onChange={handlefilechange} className='absolute z-10 opacity-0 hover:cursor-pointer' name='image' /><span className='relative hover:cursor-pointer'>Upload Picture</span></button>
               </div>
             </div>
             </div>
@@ -48,15 +127,14 @@ const Account = () => {
               </div>
               <div className="w-full flex py-9 px-6">
                 <div className="w-full grid grid-cols-4 gap-6">
-                  <input type="text" placeholder="First name" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} />
-                  <input type="text" placeholder="Last name" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} />
-                  <input type="email" placeholder="Email addrress" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} />
-                  <input type="number" placeholder="Number" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} />
-                  <input type="text" placeholder="City" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} />
+                  <input type="text" placeholder="Name" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} value={obj.Name} name='name' onChange={dataUpdate}/>
+                  <input type="email" placeholder="Email addrress" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} value={obj.Email} name='email' onChange={dataUpdate}/>
+                  <input type="number" placeholder="Number" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} value={obj.Number} name='number' onChange={dataUpdate}/>
+                  <input type="text" placeholder="City" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} value={obj.City} name='city' onChange={dataUpdate}/>
                 </div>
               </div>
               <div className="flex justify-end p-2 w-full" style={{ borderTop: "1px solid #e6e8ed" }}>
-                <button style={{ fontSize: "14px", fontWeight: "400", color: "white" }} className="py-2 px-5 bg-custompurple rounded">Save Details</button>
+                <button style={{ fontSize: "14px", fontWeight: "400", color: "white" }} className="py-2 px-5 bg-blue-700 hover:bg-blue-900 rounded" onClick={upload}>Save Details</button>
               </div>
             </div>
           </div>

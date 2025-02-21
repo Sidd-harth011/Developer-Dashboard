@@ -15,6 +15,8 @@ import { motion } from "framer-motion";
 import { IoClose } from "react-icons/io5";
 import axios from "axios";
 import { LiaSignOutAltSolid } from "react-icons/lia";
+import { add } from "../redux/UserSlice";
+import {useSelector,useDispatch} from 'react-redux'
 const SmallNav = () => {
   const [line, SetLine] = useState(true);
   const showMenu = () => {
@@ -42,6 +44,24 @@ const out = ()=>{
     }
     setTimeout(logout(),3000)
   },[logout])
+
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    const sendReq = async()=>{
+      
+      try{
+        console.log('running account')
+        const response= await axios.get('http://localhost:5050/account');
+        const data = response.data.message
+        dispatch(add({name:data.Name,city:data.City,email:data.Email,number:data.Number,image:data.Image}))
+      }catch(error){
+        console.log(error)
+      }
+    }
+    sendReq()
+  },[logout])
+  const RedU = useSelector((state)=> state.UserSlice.user)
+  console.log(RedU)
   return (
     <>
       <div className="flex w-full sticky top-0">
@@ -69,7 +89,7 @@ const out = ()=>{
               va()
               out()
             }}/>
-            <img src={pic} alt="" className="w-10 h-10 rounded-3xl" />
+            <img src={RedU.image} alt="" className="w-10 h-10 rounded-3xl" />
           </div>
         </nav>
         <div></div>

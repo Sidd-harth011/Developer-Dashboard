@@ -7,6 +7,7 @@ try{
     if(req.cookie.token){
         const decoded = jwt.verify(token,jwtsecret)
         req.userId=decoded.userId;
+        console.log(req.userId)
         next();
     }else{
         res.status(401).json({"message":"authentication error"})

@@ -29,6 +29,7 @@ app.use(session({
 
 // app.use(cors({ origin: "http://localhost:5173", credentials: true })); I have commented it because I am using both frontend and backend on the same port.
 app.use('/',require('./router/register'))
+app.use('/',require('./router/account'))
 // connetion frontend
 app.use(express.static(path.join(__dirname,"../developer-dashboard-frontend/data/dist")))
 

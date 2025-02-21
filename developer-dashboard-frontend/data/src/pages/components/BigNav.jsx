@@ -13,11 +13,15 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { IoPersonOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { IoClose } from "react-icons/io5";
+import { useSelector } from "react-redux";
 const BigNav = () => {
   const [line, SetLine] = useState(true);
   const showMenu = () => {
     return SetLine(!line);
   };
+  
+  // const RedU = useSelector((state)=> state.UserSlice.user)
+  // console.log(Redu)
   return (
     <>
       <div className="flex w-full">

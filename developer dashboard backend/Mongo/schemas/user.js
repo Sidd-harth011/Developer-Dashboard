@@ -22,6 +22,7 @@ const user = new mongoose.Schema({
     },
     Image:{
         type:String,
+        require:true
     }
 })
 
