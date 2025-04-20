@@ -5,7 +5,7 @@ import axios from 'axios';
 import {useDispatch, useSelector} from "react-redux"
 import { add } from './redux/UserSlice';
 const Account = () => {
-const [state,setState] = useState(true)
+const [state,setState] = useState(1)
 const [obj, Setobj] = useState({
   Name:"Demo",
   City:"Demo",
@@ -75,7 +75,7 @@ const dispatch = useDispatch()
       }
     }
     pictureSend()
-    setState(!state)
+    setState(state+1)
   }
   const RedU = useSelector((state)=> state.UserSlice.user)
   console.log("hi manvi" + RedU)

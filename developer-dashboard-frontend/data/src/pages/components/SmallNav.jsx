@@ -11,6 +11,7 @@ import { IoPeopleOutline } from "react-icons/io5";
 import { AiFillApi } from "react-icons/ai";
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoPersonOutline } from "react-icons/io5";
+
 import { motion } from "framer-motion";
 import { IoClose } from "react-icons/io5";
 import axios from "axios";
@@ -52,6 +53,7 @@ const out = ()=>{
       try{
         console.log('running account')
         const response= await axios.get('http://localhost:5050/account');
+        console.log("response coming in the form of :- ", response);
         const data = response.data.message
         dispatch(add({name:data.Name,city:data.City,email:data.Email,number:data.Number,image:data.Image}))
       }catch(error){
@@ -83,7 +85,7 @@ const out = ()=>{
             {/* <IoSearchOutline className="text-2xl text-icon hover:text-custompurple hover:duration-300" /> */}
           </div>
           <div className="flex flex-row gap-5 h-full items-center">
-            <IoMdPeople className="text-2xl text-icon hover:text-custompurple hover:duration-300 " />
+            <Link to='/people'><IoMdPeople className="text-2xl text-icon hover:text-custompurple hover:duration-300 " /></Link>
             <IoIosNotificationsOutline className="text-2xl text-icon hover:text-custompurple hover:duration-300 " />
             <LiaSignOutAltSolid className="text-3xl rounded-full text-white hover:text-red-600 hover:duration-300 bg-red-600 p-1 hover:bg-white hover:border border-red-600" onClick={()=>{
               va()

@@ -7,8 +7,28 @@ import TrafficPieChart from "./components/PieChart";
 import { Products } from "./components/Products";
 import Orders from "./components/Orders";
 import Login from "./login _signup/login";
+import { useEffect } from "react";
 import Sign from "./login _signup/Sign";
+import {io} from 'socket.io-client'
+
+const socket = io()
 const Overview = () => {
+
+  useEffect(()=>{
+    socket.on("connect", () => {
+      console.log("Connected to backend:", socket.id);
+  });
+
+  socket.on("disconnect", () => {
+      console.log("Disconnected from backend");
+
+  });
+  return () => {
+    socket.off("connect");
+    socket.off("disconnect");
+};
+  },[])
+
   return (
     <>
        <div className="w-full flex justify-center items-center">

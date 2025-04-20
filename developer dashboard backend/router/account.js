@@ -14,7 +14,6 @@ router.get("/account", async(req, res) => {
         const decoded = jwt.verify(token, jwtsecret);
         const data = await User.findOne({_id:decoded.userId})
         res.status(201).send({message:data})
-        console.log(data)
         
     } catch (error) {
         
@@ -35,7 +34,7 @@ router.post('/account',upload.single('image'), async(req,res)=>{
     if(!req.file){
         const token = req.cookies.token;
         const decoded = jwt.verify(token, jwtsecret);
-        console.log(req.body)
+        
         try{
             console.log("running2 submiting update")
             const data2 = await User.findOneAndUpdate(
@@ -47,7 +46,6 @@ router.post('/account',upload.single('image'), async(req,res)=>{
                 },
                 {new:true}
             )
-            console.log('Data account2 :'+ data2)
         }
         catch(error){
             console.log(error)

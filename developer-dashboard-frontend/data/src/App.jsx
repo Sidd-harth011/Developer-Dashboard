@@ -1,5 +1,5 @@
 import CardInvertedColors from "./pages/components/card";
-import { Children } from "react";
+import { Children, useEffect } from "react";
 import Mainpage from "./pages/Mainpage";
 import { Router, Route, RouterProvider, createBrowserRouter } from "react-router-dom";
 import SmallNav from "./pages/components/SmallNav";
@@ -15,7 +15,12 @@ import Sign from "./pages/login _signup/Sign";
 import Login from "./pages/login _signup/login";
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 import {Provider} from 'react-redux'
+import People from "./pages/People";
+import Message_page from "./pages/Message_page";
+
 function App() {
+
+  
   const routes = createBrowserRouter(
     [
       {
@@ -54,8 +59,17 @@ function App() {
             path: "*",
             element: <Error />,
           },
+          {
+            path:"/people",
+            element:<People/>
+          },
+          
         ],
       },
+      {
+        path:"/message-page",
+        element:<Message_page/>
+      }
     ]
   )
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import pic from "../../assets/log-pic.jpg";
 import { Link } from "react-router";
 import axios from "axios";
+import io from 'socket.io-client';
 import { Button, notification, Space } from "antd";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
@@ -77,6 +78,7 @@ const Login = () => {
       } catch (error) {}
     };
     dataSend();
+   
   }, [state]);
 dispatch(hide())
   return (
