@@ -12,7 +12,7 @@ import Error from "./pages/Error";
 import Integration from "./pages/Integration";
 import Form from "./pages/Form"
 import Sign from "./pages/login _signup/Sign";
-import Login from "./pages/login _signup/login";
+import Login from "./pages/login _signup/Login";
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 import {Provider} from 'react-redux'
 import People from "./pages/People";

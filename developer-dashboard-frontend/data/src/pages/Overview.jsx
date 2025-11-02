@@ -6,7 +6,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import TrafficPieChart from "./components/PieChart";
 import { Products } from "./components/Products";
 import Orders from "./components/Orders";
-import Login from "./login _signup/login";
+import Login from "./login _signup/Login";
 import { useEffect } from "react";
 import Sign from "./login _signup/Sign";
 import {io} from 'socket.io-client'
