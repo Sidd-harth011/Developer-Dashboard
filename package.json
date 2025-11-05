@@ -25,5 +25,8 @@
   "homepage": "https://github.com/Sidd-harth011/Developer-Dashboard#readme",
   "devDependencies": {
     "concurrently": "^9.2.1"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3"
   }
 }
