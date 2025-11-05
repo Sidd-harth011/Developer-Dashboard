@@ -50,11 +50,11 @@ app.use('/',require('./router/people'))
 app.use(express.static(path.join(__dirname,"../developer-dashboard-frontend/data/dist")))
 app.use("/uploads", express.static("uploads"));
 
-app.get("/{*any}",(req,res)=>{
+app.get("*",(req,res)=>{
     res.sendFile(path.join(__dirname,"../developer-dashboard-frontend/data/dist",'index.html'))
 })
 // end connecting frontend
-
-app.listen(5050,()=>{
+const port = Number(process.env.PORT) || 5050
+app.listen(port,()=>{
     console.log('the server is running');
 })

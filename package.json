@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "install:frontend": "npm install --prefix developer-dashboard-frontend/data",
+    "install:backend": "npm install --prefix developer-dashboard-backend",
     "build:frontend": "npm run build --prefix developer-dashboard-frontend/data",
-    "dev": "npm run dev --prefix developer-dashboard-backend",
+    "dev": "npm run install:frontend && npm run build:frontend && npm run dev --prefix developer-dashboard-backend",
     "dev:full": "concurrently \"npm run dev --prefix developer-dashboard-backend\" \"npm run dev --prefix developer-dashboard-frontend/data\"",
-    "build": "npm run install:frontend && npm run build:frontend",
+    "build": "npm run install:frontend && npm run install:backend && npm run build:frontend",
     "start": "npm start --prefix developer-dashboard-backend"
   },
   "repository": {
