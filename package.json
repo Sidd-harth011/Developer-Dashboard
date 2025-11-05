@@ -1,5 +1,26 @@
 {
-  "dependencies": {
-    "socket.io-client": "^4.8.1"
-  }
+  "name": "developer-dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-all": "npm install --prefix backend && npm install --prefix frontend",
+    "build": "npm run build --prefix frontend",
+    "start": "node backend/server.js",
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm start --prefix frontend\""
+ 
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sidd-harth011/Developer-Dashboard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Sidd-harth011/Developer-Dashboard/issues"
+  },
+  "homepage": "https://github.com/Sidd-harth011/Developer-Dashboard#readme"
 }
