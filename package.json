@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install-all": "npm install --prefix backend && npm install --prefix frontend/data",
-    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend/data\"",
+    "install-all": "npm install --prefix developer-dashboard-backend && npm install --prefix developer-dashboard-frontend/data",
     "build": "npm run build --prefix frontend/data",
-    "start": "node backend/server.js"
+    "dev": "concurrently \"npm run dev --prefix developer-dashboard-backend\" \"npm run dev --prefix developer-dashboard-frontend/data\"",
+    "start": "node developer-dashboard-backend/index.js"
   },
   "repository": {
     "type": "git",
