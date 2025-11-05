@@ -50,7 +50,7 @@ app.use('/',require('./router/people'))
 app.use(express.static(path.join(__dirname,"../developer-dashboard-frontend/data/dist")))
 app.use("/uploads", express.static("uploads"));
 
-app.get('*',(req,res)=>{
+app.get("/{*any}",(req,res)=>{
     res.sendFile(path.join(__dirname,"../developer-dashboard-frontend/data/dist",'index.html'))
 })
 // end connecting frontend
