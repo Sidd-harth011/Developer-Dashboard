@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "install-all": "npm install --prefix developer-dashboard-backend && npm install --prefix developer-dashboard-frontend/data",
-    "build": "npm run build --prefix frontend/data",
-    "dev": "concurrently \"npm run dev --prefix developer-dashboard-backend\" \"npm run dev --prefix developer-dashboard-frontend/data\"",
-    "start": "node developer-dashboard-backend/index.js"
+    "install:frontend": "npm install --prefix developer-dashboard-frontend/data",
+    "build:frontend": "npm run build --prefix developer-dashboard-frontend/data",
+    "dev": "npm run dev --prefix developer-dashboard-backend",
+    "dev:full": "concurrently \"npm run dev --prefix developer-dashboard-backend\" \"npm run dev --prefix developer-dashboard-frontend/data\"",
+    "build": "npm run install:frontend && npm run build:frontend",
+    "start": "npm start --prefix developer-dashboard-backend"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/Sidd-harth011/Developer-Dashboard/issues"
   },
-  "homepage": "https://github.com/Sidd-harth011/Developer-Dashboard#readme"
+  "homepage": "https://github.com/Sidd-harth011/Developer-Dashboard#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
 }
