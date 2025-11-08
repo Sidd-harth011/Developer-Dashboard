@@ -6,8 +6,9 @@ const jwt = require("jsonwebtoken");
 const jwtsecret = process.env.SECRET_KEY;
 const path = require('path')
 const multer = require('multer')
+const authMiddleware = require('./middleware/registerMiddleware')
 
-router.get("/account", async(req, res) => {
+router.get("/account",authMiddleware, async(req, res) => {
     try {
         console.log('run acount')
         const token = req.cookies.token;
@@ -30,7 +31,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage:storage });
 
 
-router.post('/account',upload.single('image'), async(req,res)=>{
+router.post('/account',authMiddleware,upload.single('image'), async(req,res)=>{
     if(!req.file){
         const token = req.cookies.token;
         const decoded = jwt.verify(token, jwtsecret);

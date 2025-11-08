@@ -37,7 +37,7 @@ const out = ()=>{
   useEffect(()=>{
     const logout = async()=>{
       console.log('logout')
-      const response = await axios.post('http://localhost:5050/logout',{value:v})
+      const response = await axios.post(`${import.meta.env.VITE_API_URL_FRONT}/logout`,{value:v})
       console.log(response.data.message)
       if(response.data.message == "logout"){
         nav('/')
@@ -52,7 +52,7 @@ const out = ()=>{
       
       try{
         console.log('running account')
-        const response= await axios.get('http://localhost:5050/account');
+        const response= await axios.get(`${import.meta.env.VITE_API_URL_FRONT}/account`);
         console.log("response coming in the form of :- ", response);
         const data = response.data.message
         dispatch(add({name:data.Name,city:data.City,email:data.Email,number:data.Number,image:data.Image}))

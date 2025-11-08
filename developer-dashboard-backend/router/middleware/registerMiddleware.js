@@ -17,3 +17,5 @@ catch(error){
     error
 }
 }
+
+module.exports= authMiddleware

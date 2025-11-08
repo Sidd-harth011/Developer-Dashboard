@@ -4,8 +4,9 @@ const jwt = require("jsonwebtoken");
 const jwtsecret = process.env.SECRET_KEY;
 
 const User = require("../Mongo/schemas/user");
+const authMiddleware = require('./middleware/registerMiddleware');
 
-router.get('/people',async(req,res)=>{
+router.get('/people',authMiddleware,async(req,res)=>{
     try{
         const token = req.cookies.token;
         const decoded = jwt.verify(token, jwtsecret);

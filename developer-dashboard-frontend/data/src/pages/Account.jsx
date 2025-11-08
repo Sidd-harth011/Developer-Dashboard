@@ -18,7 +18,7 @@ const dispatch = useDispatch()
       
       try{
         console.log('running account')
-        const response= await axios.get('http://localhost:5050/account');
+        const response= await axios.get(`${import.meta.env.API_URL_FRONT}/account`);
         const data = response.data.message
         console.log(data)
         Setobj({Name:data.Name,City:data.City,Email:data.Email,Number:data.Number})
@@ -65,7 +65,7 @@ const dispatch = useDispatch()
       Data.append('city',obj.City)
       try{
         console.log('upload run')
-        const response = await axios.post('http://localhost:5050/account',Data,{
+        const response = await axios.post(`${import.meta.env.VITE_API_URL_FRONT}/account`,Data,{
           headers:{"Content-Type":"multipart/form-data"},
         })
         console.log(response.data)
@@ -78,7 +78,7 @@ const dispatch = useDispatch()
     setState(state+1)
   }
   const RedU = useSelector((state)=> state.UserSlice.user)
-  console.log("hi manvi" + RedU)
+  console.log(JSON.stringify(RedU))
   
   return (
     <div>
@@ -96,7 +96,7 @@ const dispatch = useDispatch()
               <div className='p-4' style={{ borderBottom: '1px solid #ebebeb' }}>
                 <div className='w-full flex flex-col items-center justify-center gap-3'>
                   <img src={RedU.image} alt="" style={{ width: "80px", height: "80px", }} className='rounded-full' />
-                  <h5 style={{ fontSize: "24px", color: "#212636" }}>Developer</h5>
+                  <h5 style={{ fontSize: "24px", color: "#212636" }}>{RedU.name}</h5>
                   <p className='text-md' style={{ color: "#667085" }}>{obj.City}</p>
                   <p className='text-md' style={{ color: "#667085" }}>GTM - 7 </p>
                 </div>
@@ -127,10 +127,10 @@ const dispatch = useDispatch()
               </div>
               <div className="w-full flex py-9 px-6">
                 <div className="w-full grid grid-cols-4 gap-6">
-                  <input type="text" placeholder="Name" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} value={obj.Name} name='name' onChange={dataUpdate}/>
-                  <input type="email" placeholder="Email addrress" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} value={obj.Email} name='email' onChange={dataUpdate}/>
-                  <input type="number" placeholder="Number" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} value={obj.Number} name='number' onChange={dataUpdate}/>
-                  <input type="text" placeholder="City" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} value={obj.City} name='city' onChange={dataUpdate}/>
+                  <input type="text" placeholder="Name" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} value={RedU.name} name='name' onChange={dataUpdate}/>
+                  <input type="email" placeholder="Email addrress" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} value={RedU.email} name='email' onChange={dataUpdate}/>
+                  <input type="number" placeholder="Number" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} value={Number(RedU.number)} name='number' onChange={dataUpdate}/>
+                  <input type="text" placeholder="City" className="col-span-4 sm:col-span-3 lg:col-span-2 outline-none rounded" style={{ padding: "16.5px 14px", color: "rgba(33,38,54,1)", border: "1px solid #e0e0e0" }} value={RedU.city} name='city' onChange={dataUpdate}/>
                 </div>
               </div>
               <div className="flex justify-end p-2 w-full" style={{ borderTop: "1px solid #e6e8ed" }}>

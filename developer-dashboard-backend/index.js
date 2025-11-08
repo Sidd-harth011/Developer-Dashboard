@@ -41,7 +41,7 @@ app.use(session({
 }))
 // end session
 
-// app.use(cors({ origin: "http://localhost:5173", credentials: true })); I have commented it because I am using both frontend and backend on the same port.
+app.use(cors({ origin: "http://localhost:5173", credentials: true })); 
 app.use('/',require('./router/register'))
 app.use('/',require('./router/account'))
 app.use('/',require('./router/people'))

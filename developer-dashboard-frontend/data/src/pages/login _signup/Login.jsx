@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import pic from "../../assets/log-pic.jpg";
 import { Link } from "react-router";
 import axios from "axios";
-import io from 'socket.io-client';
+import io from "socket.io-client";
 import { Button, notification, Space } from "antd";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { show,hide } from "../redux/MenuSlice";
+import { show, hide } from "../redux/MenuSlice";
 const Login = () => {
-  const navigate =useNavigate()
+  const navigate = useNavigate();
   const [state, setState] = useState(true);
 
   const [form, SetForm] = useState({
@@ -51,36 +51,36 @@ const Login = () => {
     setState(!state);
   };
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const dataSend = async () => {
       console.log("run");
       try {
         const f = form;
-        const response = await axios.post("http://localhost:5050/", f);
-        console.log(response.data.message);
+        const response = await axios.post(`${import.meta.env.VITE_API_URL_FRONT}`, f);
+        console.log(response.data);
         switch (response.data.message) {
           case "Incorect password":
             {
               openNotificationWithIcon2("error");
             }
             break;
-          case "NO id": {
-            openNotificationWithIcon("error");
-            
-          }break;
-          case "login":{
-            dispatch(show())
-            navigate(response.data.redirect)
+          case "NO id":
+            {
+              openNotificationWithIcon("error");
+            }
+            break;
+          case "login": {
+            dispatch(show());
+            navigate(response.data.redirect);
           }
         }
       } catch (error) {}
     };
     dataSend();
-   
   }, [state]);
-dispatch(hide())
+  dispatch(hide());
   return (
     <>
       <div className="w-screen sm:pe-4 flex h-screen">

@@ -70,7 +70,7 @@ const Sign = () => {
       console.log("hi ");
       try {
         const f = form;
-        const response = await axios.post("http://localhost:5050/sign-up", f);
+        const response = await axios.post(`${import.meta.env.VITE_API_URL_FRONT}/sign-up`, f);
         console.log(response.data.message);
         if (response.data.message == "User is Registered") {
           openNotificationWithIcon("success");

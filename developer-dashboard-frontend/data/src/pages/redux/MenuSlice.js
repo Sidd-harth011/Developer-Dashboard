@@ -2,13 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const MenuSlice = createSlice({
     name: "MenuSlice",
-    initialState:{value:""},
+    initialState:{value:true},
     reducers:{
         show:(state)=>{
-            state.value = true
+            state.value = false
         },
         hide:(state)=>{
-            state.value = ""
+            state.value = true
         }
     }
 })
