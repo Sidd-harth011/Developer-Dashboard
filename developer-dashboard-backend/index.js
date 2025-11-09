@@ -8,6 +8,7 @@ const app = express();
 const cookieParser = require('cookie-parser')
 const mongoStore =require('connect-mongo')
 const session = require('express-session')
+const morgan = require('morgan')
 const http = require('http')
 const {Server} = require('socket.io')
 
@@ -22,7 +23,7 @@ io.on("connection", (socket) => {
     });
 });
 
-
+app.use(morgan('dev'));
 app.use(express.json())
 app.use(express.urlencoded({ extended:false }))
 app.use(cookieParser())

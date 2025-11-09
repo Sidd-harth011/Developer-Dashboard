@@ -71,7 +71,7 @@ router.post("/", async (req, res) => {
 // end for login page
 
 // for logout
-router.post("/logout",authMiddleware, (req, res) => {
+router.post("/logout", (req, res) => {
   try {
     console.log('logout',req.body.value)
     if(req.body.value == 1){

@@ -3,12 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const UserSlice = createSlice({
     name:"UserSlice",
     initialState:{user:{
-        name:"xx",
-        email:"xx",
-        password:"xx",
-        city:"xx",
-        number:"xx",
-        image:"xx"
+        name:"",
+        email:"",
+        password:"",
+        city:"",
+        number:"",
+        image:""
     }},
     reducers:{
         add:(state,action)=>{
